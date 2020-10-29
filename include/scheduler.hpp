@@ -7,7 +7,7 @@ class SG {
     void remove_edges();
 
   public:
-    SC(TCG G);
+    SG(TCG G);
     void run();
 
     int v, e;
