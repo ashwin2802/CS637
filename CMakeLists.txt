@@ -7,4 +7,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ../bin)
 
 include_directories(include/)
 
+add_library(traffic src/traffic.cpp)
+
 add_executable(run_exp src/main.cpp)
+target_link_libraries(run_exp traffic)

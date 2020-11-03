@@ -1,4 +1,4 @@
-#include <include/traffic.hpp>
+#include <traffic.hpp>
 
 Traffic::Traffic(float lamda, long int arrival_time_max) {
     this->lamda = lamda;
@@ -26,7 +26,7 @@ void Traffic::generate_lane_traffic(std::map<int, LaneType>& result, LaneType so
     std::poisson_distribution<int> distribution(lamda);
     std::uniform_int_distribution<int> udistribution(0, 2);
 
-    std::default_random_engine generator;
+    std::default_random_engine generator(time(0));
 
     LaneType insert_direction[3];
 
