@@ -23,7 +23,7 @@ LaneType Traffic::return_enum(int i) {
 }
 
 void Traffic::generate_lane_traffic(std::map<int, LaneType>& result, LaneType source) {
-    std::poisson_distribution<int> distribution(lamda);
+    std::poisson_distribution<int> distribution(1/lamda);
     std::uniform_int_distribution<int> udistribution(0, 2);
 
     std::default_random_engine generator(time(0));
