@@ -1,3 +1,5 @@
+#pragma once
+
 #include <common.hpp>
 
 // maybe implement a vehicle class instead?
