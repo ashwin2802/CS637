@@ -9,10 +9,8 @@ class TCG {
   public:
     TCG(Traffic T, Intersection I);
 
-    vector<int> wait_time;  // based on edge types
-    int pass_time;
     int v, e;
-    vector<vector<int>> adj_list;
-
-    // store pointer to arrival times?
+    int m, n;  // store from T and I
+    // vertex v_ij is indexed by i+m*j. map stores edge types as an adjacency list
+    map<pair<int, int>, vector<pair<pair<int, int>, EdgeType>>> edges;
 };

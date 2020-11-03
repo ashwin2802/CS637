@@ -1,10 +1,10 @@
+#include <map>
 #include <unordered_map>
 #include <vector>
 
 using namespace std;  // might remove later
 
-// need enums for:
-// edge types
-// lane types
-// vertex state
-// edge state
+enum class EdgeType { TYPE_1, TYPE_2, TYPE_3 };
+enum class EdgeState { ON, OFF, UNDECIDED, DONTCARE };
+enum class VertexState { WHITE, BLACK, GRAY };
+enum class LaneType { NORTH, SOUTH, EAST, WEST };  // based on direction vehicle will move in if it does not turn

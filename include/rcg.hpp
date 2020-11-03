@@ -7,5 +7,7 @@ class RCG {
     bool check_cycle();
 
     int v, e;
-    vector<vector<int>> adj_list;
+    int m, n;
+    // vertex u_ijk is indexed by i+m*j+n*m*k
+    map<pair<pair<int, int>, int>, vector<pair<pair<int, int>, int>>> edges;
 };

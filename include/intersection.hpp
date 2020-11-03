@@ -8,5 +8,5 @@ class Intersection {
     Intersection(int num);
     int n;  // number of conflict zones
 
-    unordered_map<pair<int, int>, vector<int>> paths;  // path followed by each vehicle through the intersection
+    unordered_map<pair<LaneType, LaneType>, vector<int>> paths;  // path followed by each vehicle through the intersection
 };
