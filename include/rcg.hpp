@@ -1,3 +1,5 @@
+#pragma once
+
 #include <tcg.hpp>
 
 class RCG {

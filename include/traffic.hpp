@@ -1,3 +1,5 @@
+#pragma once
+
 #include <common.hpp>
 
 // maybe implement a vehicle class instead?
@@ -5,11 +7,17 @@
 class Traffic {
   private:
     void generate_traffic();  // might not need
-                              // Poisson distribution parameters
+    void generate_lane_traffic(std::map<int, LaneType>&, LaneType);
+
+    LaneType return_enum(int);
+
+    float lamda;  // Poisson distribution parameters
+    long int arrival_time_max;
 
   public:
-    Traffic(int params);
+    Traffic(float, long int);
 
+    std::map<LaneType, std::map<int, LaneType>> traffic;
     int m;                            // number of vehicles
     vector<int> lane_nums;            // number of vehicles on each source lane
     vector<vector<int>> enter_times;  // entering times, source lane wise

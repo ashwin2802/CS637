@@ -1,3 +1,5 @@
+#pragma once
+
 #include <rcg.hpp>
 
 class SG {

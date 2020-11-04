@@ -1,6 +1,10 @@
+#pragma once
+
 #include <map>
 #include <unordered_map>
 #include <vector>
+#include <utility>
+#include <random>
 
 using namespace std;  // might remove later
 
