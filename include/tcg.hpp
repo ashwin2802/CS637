@@ -13,6 +13,5 @@ class TCG {
 
     int v, e;
     int m, n;  // store from T and I
-    // vertex v_ij is indexed by i+m*j. map stores edge types as an adjacency list
     map<pair<int, int>, vector<pair<pair<int, int>, EdgeType>>> edges;
 };
