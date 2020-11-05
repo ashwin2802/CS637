@@ -102,4 +102,29 @@ RCG::RCG(TCG G) {
 }
 
 bool RCG::check_cycle() {
+    set<int> visited;
+    stack<int> dfs_stack;
+    for (auto it = edges.begin(); it != edges.end(); it++) {
+        int hash = get_hash(it->first);
+        if (visited.find(hash) == visited.end()) {
+            dfs_stack.push(hash);
+            set<int> cycle_set;
+            while (!dfs_stack.empty()) {
+                int u = dfs_stack.top();
+                visited.insert(u);
+                cycle_set.insert(u);
+                dfs_stack.pop();
+                for (auto& e : edges[get_key(u)]) {
+                    int h = get_hash(e);
+                    if (cycle_set.find(h) != cycle_set.end()) {
+                        return true;
+                    }
+                    if (visited.find(h) == visited.end()) {
+                        dfs_stack.push(h);
+                    }
+                }
+            }
+        }
+    }
+    return false;
 }
