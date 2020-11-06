@@ -13,12 +13,12 @@ class SG {
     void run();
 
     int v, e;
-    vector<vector<int>> adj_list;
-    vector<int> vertex_state;
-    vector<int> edge_cost;
-    vector<int> edge_state;
-    vector<int> vertex_slack;
-    vector<int> start_time();
+    std::vector<std::vector<int>> adj_list;
+    std::vector<int> vertex_state;
+    std::vector<int> edge_cost;
+    std::vector<int> edge_state;
+    std::vector<int> vertex_slack;
+    std::vector<int> start_time();
 
     RCG G_R;
 };

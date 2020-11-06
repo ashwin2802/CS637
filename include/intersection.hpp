@@ -10,5 +10,5 @@ class Intersection {
     Intersection(int num);
     int n;  // number of conflict zones
 
-    unordered_map<pair<LaneType, LaneType>, vector<int>> paths;  // path followed by each vehicle through the intersection
+    std::map<std::pair<int, int>, std::vector<int>> paths;  // path followed by each vehicle through the intersection
 };

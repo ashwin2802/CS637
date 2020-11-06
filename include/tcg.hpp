@@ -9,9 +9,10 @@ class TCG {
     void model_conflicts();
 
   public:
+    TCG(){};  // for testing
     TCG(Traffic T, Intersection I);
 
     int v, e;
     int m, n;  // store from T and I
-    map<pair<int, int>, vector<pair<pair<int, int>, EdgeType>>> edges;
+    std::map<std::pair<int, int>, std::vector<std::pair<std::pair<int, int>, EdgeType>>> edges;
 };

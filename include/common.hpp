@@ -6,8 +6,6 @@
 #include <utility>
 #include <random>
 
-using namespace std;  // might remove later
-
 enum class EdgeType { TYPE_1, TYPE_2, TYPE_3 };
 enum class EdgeState { ON, OFF, UNDECIDED, DONTCARE };
 enum class VertexState { WHITE, BLACK, GRAY };
