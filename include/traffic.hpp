@@ -19,6 +19,6 @@ class Traffic {
 
     std::map<LaneType, std::map<int, LaneType>> traffic;
     int m;                            // number of vehicles
-    vector<int> lane_nums;            // number of vehicles on each source lane
-    vector<vector<int>> enter_times;  // entering times, source lane wise
+    std::vector<int> lane_nums;       // number of vehicles on each source lane
+    std::vector<std::vector<int>> enter_times;  // entering times, source lane wise
 };
