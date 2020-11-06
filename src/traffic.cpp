@@ -1,7 +1,7 @@
 #include <traffic.hpp>
 
-Traffic::Traffic(float lamda, long int arrival_time_max) {
-    this->lamda = lamda;
+Traffic::Traffic(float lambda, long int arrival_time_max) {
+    this->lambda = lambda;
     this->arrival_time_max = arrival_time_max;
     generate_traffic();
 }
@@ -23,7 +23,7 @@ LaneType Traffic::return_enum(int i) {
 }
 
 void Traffic::generate_lane_traffic(std::map<int, LaneType>& result, LaneType source) {
-    std::poisson_distribution<int> distribution(1/lamda);
+    std::poisson_distribution<int> distribution(1 / lambda);
     std::uniform_int_distribution<int> udistribution(0, 2);
 
     std::default_random_engine generator(time(0));
