@@ -1,6 +1,5 @@
 #pragma once
 
-#include <iostream>
 #include <set>
 #include <stack>
 #include <tcg.hpp>

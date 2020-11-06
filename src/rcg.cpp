@@ -22,8 +22,11 @@ RCG::RCG(const TCG& G) {
     for (auto it = G.edges.begin(); it != G.edges.end(); it++) {
         auto [i1, j1] = it->first;
         for (auto& e : it->second) {
+            if (e.second.state == EdgeState::OFF || e.second.state == EdgeState::DONTCARE) {
+                continue;
+            }
             auto [i2, j2] = e.first;
-            if (i1 == i2 && e.second == EdgeType::TYPE_1) {
+            if (i1 == i2 && e.second.type == EdgeType::TYPE_1) {
                 v++;
                 edges.insert(std::make_pair(make_triple(i1, j1, j2), std::vector<std::pair<std::pair<int, int>, int>>()));
             }
@@ -34,10 +37,16 @@ RCG::RCG(const TCG& G) {
     for (auto it = G.edges.begin(); it != G.edges.end(); it++) {
         auto [i1, j1] = it->first;
         for (auto& e1 : it->second) {
+            if (e1.second.state == EdgeState::OFF || e1.second.state == EdgeState::DONTCARE) {
+                continue;
+            }
             auto [i2, j2] = e1.first;
             // Rule 2
             if (i1 == i2 && j1 != j2 && G.edges.find(std::make_pair(i2, j2)) != G.edges.end()) {
                 for (auto& e2 : G.edges.at(std::make_pair(i2, j2))) {
+                    if (e2.second.state == EdgeState::OFF || e2.second.state == EdgeState::DONTCARE) {
+                        continue;
+                    }
                     auto [i3, j3] = e2.first;
                     if (i2 == i3 && j2 != j3) {
                         e++;
@@ -48,11 +57,17 @@ RCG::RCG(const TCG& G) {
 
             if (i1 != i2 && j1 == j2) {
                 for (auto& e2 : G.edges.at(std::make_pair(i1, j1))) {
+                    if (e2.second.state == EdgeState::OFF || e2.second.state == EdgeState::DONTCARE) {
+                        continue;
+                    }
                     auto [i3, j3] = e2.first;
                     if (i1 == i3 && j1 != j3) {
                         // Rule 3
                         if (G.edges.find(std::make_pair(i2, j2)) != G.edges.end()) {
                             for (auto& e3 : G.edges.at(std::make_pair(i2, j2))) {
+                                if (e3.second.state == EdgeState::OFF || e3.second.state == EdgeState::DONTCARE) {
+                                    continue;
+                                }
                                 auto [i4, j4] = e3.first;
                                 if (i2 == i4 && j2 != j4) {
                                     e++;
@@ -66,6 +81,9 @@ RCG::RCG(const TCG& G) {
                             auto [i4, j4] = it2->first;
                             if (i2 == i4 && j2 != j4) {
                                 for (auto& e3 : it2->second) {
+                                    if (e3.second.state == EdgeState::OFF || e3.second.state == EdgeState::DONTCARE) {
+                                        continue;
+                                    }
                                     auto [i5, j5] = e3.first;
                                     if (i2 == i5 && j2 == j5) {
                                         e++;
@@ -81,11 +99,17 @@ RCG::RCG(const TCG& G) {
                     auto [i3, j3] = it2->first;
                     if (i1 == i3 && j1 != j3 && G.edges.find(std::make_pair(i3, j3)) != G.edges.end()) {
                         for (auto& e2 : G.edges.at(std::make_pair(i3, j3))) {
+                            if (e2.second.state == EdgeState::OFF || e2.second.state == EdgeState::DONTCARE) {
+                                continue;
+                            }
                             auto [i4, j4] = e2.first;
                             if (i4 == i1 && j4 == j1) {
                                 // Rule 6
                                 if (G.edges.find(std::make_pair(i2, j2)) != G.edges.end()) {
                                     for (auto& e3 : G.edges.at(std::make_pair(i2, j2))) {
+                                        if (e3.second.state == EdgeState::OFF || e3.second.state == EdgeState::DONTCARE) {
+                                            continue;
+                                        }
                                         auto [i5, j5] = e3.first;
                                         if (i5 == i2 && j2 != j5) {
                                             e++;
@@ -99,6 +123,9 @@ RCG::RCG(const TCG& G) {
                                     auto [i5, j5] = it2->first;
                                     if (i5 == i2 && j5 != j2) {
                                         for (auto& e3 : it2->second) {
+                                            if (e3.second.state == EdgeState::OFF || e3.second.state == EdgeState::DONTCARE) {
+                                                continue;
+                                            }
                                             auto [i6, j6] = e3.first;
                                             if (i5 == i6 && j6 == j2) {
                                                 e++;
@@ -117,7 +144,7 @@ RCG::RCG(const TCG& G) {
 
     for (auto it = edges.begin(); it != edges.end(); it++) {
         if (it->second.size() == 0) {
-            edges.erase(it);
+            edges.erase(it);  // remove vertices with no outgoing edges from adj list
         }
     }
 }

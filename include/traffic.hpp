@@ -11,7 +11,7 @@ class Traffic {
 
     LaneType return_enum(int);
 
-    float lamda;  // Poisson distribution parameters
+    float lambda;  // Poisson distribution parameters
     long int arrival_time_max;
 
   public:

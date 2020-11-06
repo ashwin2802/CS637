@@ -1,18 +1,18 @@
-#include <scheduler.hpp>
+#include <traffic.hpp>
 
-void print_enum (LaneType t) {
-        switch (t) {
+void print_enum(LaneType t) {
+    switch (t) {
         case LaneType::NORTH:
-            std::cout<<"NORTH";
+            std::cout << "NORTH";
             return;
         case LaneType::SOUTH:
-            std::cout<<"SOUTH";
+            std::cout << "SOUTH";
             return;
         case LaneType::EAST:
-            std::cout<<"EAST";
+            std::cout << "EAST";
             return;
         case LaneType::WEST:
-            std::cout<<"WEST";
+            std::cout << "WEST";
             return;
         default:
             std::invalid_argument e("Integer for enum LaneType not within bounds.");
@@ -21,10 +21,6 @@ void print_enum (LaneType t) {
 }
 
 int main(int argc, char** argv) {
-    // implement runtime logic here
-    // need functions to benchmark times, save schedules --> utils.hpp
-    // int param_1, param_2;
-    
     Traffic t(0.1, 30);
 
     for (auto it_ : t.traffic) {
@@ -37,11 +33,4 @@ int main(int argc, char** argv) {
         }
         std::cout << std::endl;
     }
-    // Intersection i(param_2);
-
-    // TCG G(t, i);
-    // SG scheduler(G);
-    // scheduler.run();
-
-    return 0;
 }
