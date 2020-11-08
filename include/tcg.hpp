@@ -4,14 +4,16 @@
 #include <traffic.hpp>
 
 typedef struct Vertex {
-    int slack;
-    int pass_time;
-    int start_time;
+    double slack;
+    double pass_time;
+    double start_time;
+    bool first_j;  // zone j is the first conflict zone in the path
+    bool first_i;  // vehicle i is the first in its source lane
     VertexState state;
 } Vertex;
 
 typedef struct Edge {
-    int cost;
+    double cost;
     double wait_time;
     EdgeType type;
     EdgeState state = EdgeState::ON;  // all edges on by default;

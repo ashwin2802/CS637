@@ -25,8 +25,8 @@ LaneType Traffic::return_enum(int i) {
 void Traffic::generate_lane_traffic(std::map<int, LaneType>& result, LaneType source) {
     std::poisson_distribution<int> distribution(1 / lambda);
     std::uniform_int_distribution<int> udistribution(0, 2);
-
-    std::default_random_engine generator(time(0));
+    std::random_device rd;
+    std::default_random_engine generator(rd());
 
     LaneType insert_direction[3];
 
@@ -38,10 +38,7 @@ void Traffic::generate_lane_traffic(std::map<int, LaneType>& result, LaneType so
         j++;
     }
 
-    long int time = 0;
-
-    while (time < arrival_time_max) {
-        time += distribution(generator);
+    for (long int time = 0; time < arrival_time_max; time += distribution(generator)) {
         result.insert({time, insert_direction[udistribution(generator)]});
     }
 }

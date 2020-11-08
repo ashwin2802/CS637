@@ -162,13 +162,15 @@ bool RCG::check_cycle() {
                 visited.insert(u);
                 cycle_set.insert(u);
                 dfs_stack.pop();
-                for (auto& e : edges[get_key(u)]) {
-                    int h = get_hash(e);
-                    if (cycle_set.find(h) != cycle_set.end()) {
-                        return true;
-                    }
-                    if (visited.find(h) == visited.end()) {
-                        dfs_stack.push(h);
+                if (edges.find(get_key(u)) != edges.end()) {
+                    for (auto& e : edges[get_key(u)]) {
+                        int h = get_hash(e);
+                        if (cycle_set.find(h) != cycle_set.end()) {
+                            return true;
+                        }
+                        if (visited.find(h) == visited.end()) {
+                            dfs_stack.push(h);
+                        }
                     }
                 }
             }
