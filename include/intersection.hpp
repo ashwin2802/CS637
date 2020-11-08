@@ -4,7 +4,8 @@
 
 class Intersection {
   private:
-    void calculate_paths();  // compute path map
+    void calculate_paths_one();  // compute path map
+    void calculate_paths_four();  // compute path map
 
   public:
     Intersection(int num);

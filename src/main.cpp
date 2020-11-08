@@ -1,4 +1,5 @@
 #include <scheduler.hpp>
+#include <intersection.hpp>
 
 void print_enum (LaneType t) {
         switch (t) {
@@ -38,7 +39,8 @@ int main(int argc, char** argv) {
         std::cout << std::endl;
     }
     // Intersection i(param_2);
-
+    Intersection i(1);
+    
     // TCG G(t, i);
     // SG scheduler(G);
     // scheduler.run();

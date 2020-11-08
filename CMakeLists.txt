@@ -9,9 +9,10 @@ include_directories(include)
 
 add_library(traffic src/traffic.cpp)
 add_library(rcg src/rcg.cpp)
+add_library(intersection src/intersection.cpp)
 
 add_executable(run_exp src/main.cpp)
-target_link_libraries(run_exp traffic)
+target_link_libraries(run_exp traffic intersection)
 
 add_executable(rcg_test tests/rcg_test.cpp)
 target_link_libraries(rcg_test rcg)
