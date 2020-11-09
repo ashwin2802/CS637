@@ -1,55 +1,50 @@
 #include <traffic.hpp>
 
-Traffic::Traffic(float lambda, long int arrival_time_max) {
+Traffic::Traffic(float lambda, long int arrival_time_max){
     this->lambda = lambda;
     this->arrival_time_max = arrival_time_max;
     generate_traffic();
 }
 
-LaneType Traffic::return_enum(int i) {
-    switch (i) {
-        case 0:
-            return LaneType::NORTH;
-        case 1:
-            return LaneType::SOUTH;
-        case 2:
-            return LaneType::EAST;
-        case 3:
-            return LaneType::WEST;
-        default:
-            std::invalid_argument e("Integer for enum LaneType not within bounds.");
-            throw e;
-    }
-}
-
-void Traffic::generate_lane_traffic(std::map<int, LaneType>& result, LaneType source) {
+// void Traffic::generate_lane_traffic(std::map<int, int>& result, int source) {
+void Traffic::generate_lane_traffic(int source) {
     std::poisson_distribution<int> distribution(1 / lambda);
     std::uniform_int_distribution<int> udistribution(0, 2);
     std::random_device rd;
     std::default_random_engine generator(rd());
 
-    LaneType insert_direction[3];
+    int insert_direction[3];
 
     int j = 0;
-    for (int i = 0; i < 4; i++) {
-        if (source == return_enum(i))
+    for (int i = 1; i <= 4; i++) {
+        if (source == i)
             continue;
-        insert_direction[j] = return_enum(i);
+        insert_direction[j] = i;
         j++;
     }
 
-    for (long int time = 0; time < arrival_time_max; time += distribution(generator)) {
-        result.insert({time, insert_direction[udistribution(generator)]});
+    for (long int time = distribution(generator); time < arrival_time_max; time += distribution(generator)) {
+        // result.insert({time, insert_direction[udistribution(generator)]});
+        traffic.insert({std::pair<int, int>(source, time), insert_direction[udistribution(generator)]});
+        vehicles.push_back(std::pair<int, int>(source, time));
     }
+}
+
+bool Traffic::compare(std::pair<int, int> e1, std::pair<int, int> e2) {
+    return e1.second < e2.second;
+    // std::map<std::map<int, int>, int> trafficfefe();
 }
 
 void Traffic::generate_traffic() {
     traffic.clear();
-    std::map<int, LaneType> arrival_times;
+    // std::map<int, int> arrival_times;
 
-    for (int i = 0; i < 4; i++) {
-        generate_lane_traffic(arrival_times, return_enum(i));
-        traffic.insert({return_enum(i), arrival_times});
-        arrival_times.clear();
+    for (int i = 1; i <= 4; i++) {
+        // generate_lane_traffic(arrival_times, i);
+        generate_lane_traffic(i);
+        // traffic.insert({arrival_times, i});
+        // arrival_times.clear();
     }
+
+    sort(vehicles.begin(), vehicles.end(), Traffic::compare);
 }
