@@ -28,6 +28,7 @@ class TCG {
   private:
     void create_type_1();
     void model_conflicts();
+    void make_vertices();
 
   public:
     TCG(){};  // for testing
