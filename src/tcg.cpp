@@ -1,6 +1,6 @@
 #include <tcg.hpp>
 
-TCG::TCG(Traffic T, Intersection I) {
+void TCG::vertices_and_type_1(Traffic& T, Intersection& I) {
     bool first_vehicle[] = {true, true, true, true};
     int i = 1;
 
@@ -34,4 +34,60 @@ TCG::TCG(Traffic T, Intersection I) {
         first_vehicle[it.first.first - 1] = false;
         i++;
     }
+}
+
+void TCG::model_conflicts(Traffic& T, int conflict_zones) {
+    for (int i = 1; i <= T.m; i++) {
+        for (int j = i + 1; j <= T.m; j++) {
+            for (int k = 1; k <= conflict_zones; k++) {
+                if (vertices.count(std::pair<int, int>(i, k)) && vertices.count(std::pair<int, int>(j, k))) {
+                    auto vehicle_one = T.traffic.begin();
+                    std::advance(vehicle_one, i - 1);
+
+                    auto vehicle_two = T.traffic.begin();
+                    std::advance(vehicle_two, j - 1);
+
+                    if (vehicle_one->first.first == vehicle_two->first.first) {
+                        Edge e(EdgeType::TYPE_2);
+                        e.wait_time = 0.2;
+
+                        std::pair<std::pair<int, int>, Edge> dest_v(std::pair<int, int>(j, k), e);
+
+                        if (edges.count(std::pair<int, int>(i, k))) {
+                            edges[std::pair<int, int>(i, k)].push_back(dest_v);
+                        } else {
+                            std::vector<std::pair<std::pair<int, int>, Edge>> dest = {dest_v};
+                            edges.insert({std::pair<int, int>(i, k), dest});
+                        }
+
+                    } else {
+                        Edge e(EdgeType::TYPE_3);
+                        e.wait_time = 0.2;
+
+                        std::pair<std::pair<int, int>, Edge> dest_v_one(std::pair<int, int>(j, k), e);
+                        std::pair<std::pair<int, int>, Edge> dest_v_two(std::pair<int, int>(i, k), e);
+
+                        if (edges.count(std::pair<int, int>(j, k))) {
+                            edges[std::pair<int, int>(j, k)].push_back(dest_v_two);
+                        } else {
+                            std::vector<std::pair<std::pair<int, int>, Edge>> dest = {dest_v_two};
+                            edges.insert({std::pair<int, int>(j, k), dest});
+                        }
+
+                        if (edges.count(std::pair<int, int>(i, k))) {
+                            edges[std::pair<int, int>(i, k)].push_back(dest_v_one);
+                        } else {
+                            std::vector<std::pair<std::pair<int, int>, Edge>> dest = {dest_v_one};
+                            edges.insert({std::pair<int, int>(i, k), dest});
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+TCG::TCG(Traffic T, Intersection I) {
+    vertices_and_type_1(T, I);
+    model_conflicts(T, I.n);
 }

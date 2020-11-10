@@ -26,9 +26,8 @@ typedef struct Edge {
 
 class TCG {
   private:
-    void create_type_1();
-    void model_conflicts();
-    void make_vertices();
+    void vertices_and_type_1(Traffic& T, Intersection& I);
+    void model_conflicts(Traffic& T, int conflict_zones);
 
   public:
     TCG(){};  // for testing
