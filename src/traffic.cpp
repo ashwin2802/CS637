@@ -3,10 +3,12 @@
 Traffic::Traffic(float lambda, long int arrival_time_max){
     this->lambda = lambda;
     this->arrival_time_max = arrival_time_max;
-    generate_traffic();
+    lane_nums.resize(4);
+    enter_times.resize(4);
+    for (int i = 1; i <= 4; i++) generate_lane_traffic(i);
+    m = traffic.size();
 }
 
-// void Traffic::generate_lane_traffic(std::map<int, int>& result, int source) {
 void Traffic::generate_lane_traffic(int source) {
     std::poisson_distribution<int> distribution(1 / lambda);
     std::uniform_int_distribution<int> udistribution(0, 2);
@@ -23,28 +25,11 @@ void Traffic::generate_lane_traffic(int source) {
         j++;
     }
 
+    lane_nums[source] = 0;
+
     for (long int time = distribution(generator); time < arrival_time_max; time += distribution(generator)) {
-        // result.insert({time, insert_direction[udistribution(generator)]});
-        traffic.insert({std::pair<int, int>(source, time), insert_direction[udistribution(generator)]});
-        vehicles.push_back(std::pair<int, int>(source, time));
+        auto z = traffic.insert({std::pair<int, int>(source, time), insert_direction[udistribution(generator)]});
+        lane_nums[source]++;
+        enter_times[source].push_back(time);
     }
-}
-
-bool Traffic::compare(std::pair<int, int> e1, std::pair<int, int> e2) {
-    return e1.second < e2.second;
-    // std::map<std::map<int, int>, int> trafficfefe();
-}
-
-void Traffic::generate_traffic() {
-    traffic.clear();
-    // std::map<int, int> arrival_times;
-
-    for (int i = 1; i <= 4; i++) {
-        // generate_lane_traffic(arrival_times, i);
-        generate_lane_traffic(i);
-        // traffic.insert({arrival_times, i});
-        // arrival_times.clear();
-    }
-
-    sort(vehicles.begin(), vehicles.end(), Traffic::compare);
 }
