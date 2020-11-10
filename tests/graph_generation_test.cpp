@@ -22,6 +22,12 @@ std::string print_enum(int t) {
 int main() {
     Traffic T(0.1, 30);
     Intersection I(4);
+
+    // T.traffic.clear();
+
+    // T.traffic.insert({std::pair<int, int>(4, 8), 1});
+    // T.traffic.insert({std::pair<int, int>(3, 11), 1});
+    // T.traffic.insert({std::pair<int, int>(1, 14), 4});
     TCG G(T, I);
 
     std::cout << std::left << std::setw(10) << "Source" << std::setw(15) << "Destination" << "Time" << std::endl;
@@ -45,16 +51,20 @@ int main() {
     //     std::cout << std::endl;
     // }
 
-    for (auto it : T.vehicles) {
-        std::cout << print_enum(it.first);
-        std::cout << " " << it.second <<std::endl;
-    }
+    // for (auto it : T.vehicles) {
+    //     std::cout << print_enum(it.first);
+    //     std::cout << " " << it.second <<std::endl;
+    // }
 
     std::cout << std::endl << std::endl;
 
     for (auto it : G.vertices) {
-        std::cout << "i = " << it.first.first;
-        std::cout << "  j = " << it.first.second << std::endl;
+        std::cout << "i = " << it.first.first << "  ";
+        std::cout << "j = " << it.first.second << "  ";
+        std::cout << "arrival time = " << it.second.start_time << "  ";
+        std::cout << "is it first vehicle: " << it.second.first_i << "  ";
+        std::cout << "is it conflict zone: " << it.second.first_j << "  ";
+        std::cout << std::endl << std::endl;
     }
 
 
