@@ -12,7 +12,7 @@ void Intersection::calculate_paths_one() {
 }
 
 void Intersection::calculate_paths_four() {
-    paths.insert({std::pair<int, int>(1, 2), std::vector<int>({3, 1})});
+    paths.insert({std::pair<int, int>(1, 2), std::vector<int>({4, 1})});
     paths.insert({std::pair<int, int>(1, 3), std::vector<int>({4, 1, 2})});
     paths.insert({std::pair<int, int>(1, 4), std::vector<int>({4})});
 

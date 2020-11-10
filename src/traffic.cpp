@@ -29,7 +29,7 @@ void Traffic::generate_lane_traffic(int source) {
 
     for (long int time = distribution(generator); time < arrival_time_max; time += distribution(generator)) {
         auto z = traffic.insert({std::pair<int, int>(source, time), insert_direction[udistribution(generator)]});
-        lane_nums[source]++;
-        enter_times[source].push_back(time);
+        lane_nums[source-1]++;
+        enter_times[source-1].push_back(time);
     }
 }
