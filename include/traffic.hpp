@@ -5,8 +5,8 @@
 // maybe implement a vehicle class instead?
 
 struct compare_pair {
-    bool operator() (const std::pair<int, int>& e1, const std::pair<int, int>& e2) const {
-        return e1.second < e2.second;
+    bool operator()(const std::pair<int, int>& e1, const std::pair<int, int>& e2) const {
+        return std::tie(e1.second, e1.first) < std::tie(e2.second, e2.first);
     }
 };
 
