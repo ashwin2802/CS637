@@ -5,6 +5,7 @@
 #include <random>
 #include <utility>
 #include <vector>
+#include <algorithm>
 
 enum class EdgeType { TYPE_1, TYPE_2, TYPE_3 };
 enum class EdgeState { ON, OFF, UNDECIDED, DONTCARE };

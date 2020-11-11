@@ -1,17 +1,17 @@
 #include <traffic.hpp>
 
-void print_enum(LaneType t) {
+void print_enum(int t) {
     switch (t) {
-        case LaneType::NORTH:
+        case 1:
             std::cout << "NORTH";
             return;
-        case LaneType::SOUTH:
+        case 2:
             std::cout << "SOUTH";
             return;
-        case LaneType::EAST:
+        case 3:
             std::cout << "EAST";
             return;
-        case LaneType::WEST:
+        case 4:
             std::cout << "WEST";
             return;
         default:
@@ -31,6 +31,10 @@ int main(int argc, char** argv) {
             print_enum(sit_.second);
             std::cout << std::endl;
         }
-        std::cout << std::endl;
+        std::cout << std::endl << std::endl;
+    }
+
+    for (auto it_:t.vehicles) {
+        std::cout << it_.first << " " << it_.second << std::endl;
     }
 }
