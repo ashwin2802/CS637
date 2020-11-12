@@ -39,5 +39,9 @@ class PetriNet {
 //   private:
     std::list<transition> transitions;
     std::unordered_set<token, hasher, comparator> active_tokens;
+
+  private:
+    void type_one_transitions(TCG& graph);
+    void type_two_and_three(TCG& graph);  
     // void construct_transitions();
 };

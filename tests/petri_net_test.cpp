@@ -25,19 +25,37 @@ int main() {
     e4.type = EdgeType::TYPE_3;
     v3.push_back({{1, 2}, e4});
     G.edges.insert({{2, 2}, v3});
+    
     // v.clear();
+
+    G.vertices.clear();
+
+    Vertex k;
+    k.first_i = true;
+
+    k.first_j = true;
+    G.vertices.insert({{1, 1}, k});
+
+    k.first_j = false;
+    G.vertices.insert({{1, 2}, k});
+
+    k.first_j = true;
+    G.vertices.insert({{2, 1}, k});
+
+    k.first_j = false;
+    G.vertices.insert({{2, 2}, k});
 
     PetriNet P(G);
 
     // for (auto trans : P.transitions) {
     //     std::cout << "LEFT:" << std::endl;
-        
+
     //     for (auto left : trans.first) {
     //         std::cout << left.first.first << ", " << left.first.second << ", " << left.second.first << std::endl;
     //     }
 
     //     std::cout << "RIGHT:" << std::endl;
-        
+
     //     for (auto right : trans.second) {
     //         std::cout << right.first.first << ", " << right.first.second << ", " << right.second.first << std::endl;
     //     }
@@ -45,7 +63,7 @@ int main() {
     //     std::cout << std::endl;
     // }
 
-    // P.print();
+    P.print();
 
     return 0;
 }
