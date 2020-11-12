@@ -29,19 +29,23 @@ int main() {
 
     PetriNet P(G);
 
-    for (auto trans : P.transitions) {
-        std::cout << "LEFT:" << std::endl;
-        for (auto left : trans.first) {
-            std::cout << left.first.first << ", " << left.first.second << ", " << left.second.first << std::endl;
-        }
+    // for (auto trans : P.transitions) {
+    //     std::cout << "LEFT:" << std::endl;
+        
+    //     for (auto left : trans.first) {
+    //         std::cout << left.first.first << ", " << left.first.second << ", " << left.second.first << std::endl;
+    //     }
 
-        std::cout << "RIGHT:" << std::endl;
-        for (auto right : trans.second) {
-            std::cout << right.first.first << ", " << right.first.second << ", " << right.second.first << std::endl;
-        }
+    //     std::cout << "RIGHT:" << std::endl;
+        
+    //     for (auto right : trans.second) {
+    //         std::cout << right.first.first << ", " << right.first.second << ", " << right.second.first << std::endl;
+    //     }
 
-        std::cout << std::endl;
-    }
+    //     std::cout << std::endl;
+    // }
+
+    // P.print();
 
     return 0;
 }

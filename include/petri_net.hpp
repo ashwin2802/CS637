@@ -32,6 +32,9 @@ class PetriNet {
     ~PetriNet() {
     }
     void simulate();
+    void print();
+    void print_transition(transition& t);
+    void print_token(token& t);
 
 //   private:
     std::list<transition> transitions;
