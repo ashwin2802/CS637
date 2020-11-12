@@ -11,6 +11,7 @@ add_library(traffic src/traffic.cpp)
 add_library(rcg src/rcg.cpp)
 add_library(tcg src/tcg.cpp)
 add_library(intersection src/intersection.cpp)
+add_library(petrinet src/petri_net.cpp)
 
 add_executable(run_exp src/main.cpp)
 target_link_libraries(run_exp traffic intersection)
@@ -26,3 +27,6 @@ target_link_libraries(intersection_test intersection)
 
 add_executable(graph_generation_test tests/graph_generation_test.cpp)
 target_link_libraries(graph_generation_test intersection traffic tcg)
+
+add_executable(petri_net_test tests/petri_net_test.cpp)
+target_link_libraries(petri_net_test intersection traffic tcg petrinet)
