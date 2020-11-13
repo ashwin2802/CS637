@@ -3,6 +3,8 @@
 void TCG::vertices_and_type_1(Traffic& T, Intersection& I) {
     bool first_vehicle[] = {true, true, true, true};
     int i = 1;
+    this->v = T.m;
+    this->e = 0;
 
     for (auto it : T.traffic) {
         bool isfirst_cz = true;
@@ -18,6 +20,7 @@ void TCG::vertices_and_type_1(Traffic& T, Intersection& I) {
                 std::pair<std::pair<int, int>, Edge> dest_v(std::pair<int, int>(i, czit), e);
                 std::vector<std::pair<std::pair<int, int>, Edge>> dest = {dest_v};
                 edges.insert({std::pair<int, int>(i, first_cz), dest});
+                (this->e)++;
                 first_cz = czit;
             }
 
@@ -59,6 +62,7 @@ void TCG::model_conflicts(Traffic& T, int conflict_zones) {
                             std::vector<std::pair<std::pair<int, int>, Edge>> dest = {dest_v};
                             edges.insert({std::pair<int, int>(i, k), dest});
                         }
+                        (this->e)++;
 
                     } else {
                         Edge e(EdgeType::TYPE_3);
@@ -80,11 +84,14 @@ void TCG::model_conflicts(Traffic& T, int conflict_zones) {
                             std::vector<std::pair<std::pair<int, int>, Edge>> dest = {dest_v_one};
                             edges.insert({std::pair<int, int>(i, k), dest});
                         }
+                        (this->e) += 2;
+
                     }
                 }
             }
         }
     }
+
 }
 
 TCG::TCG(Traffic T, Intersection I) {

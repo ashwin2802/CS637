@@ -1,7 +1,7 @@
 #include <petri_net.hpp>
 
 void PetriNet::type_one_transitions(TCG& graph) {
-    v = graph.v;
+    this->v = graph.v;
 
     for (auto vertex : graph.vertices) {
         if (vertex.second.first_j) {
@@ -90,7 +90,7 @@ PetriNet::PetriNet(TCG& graph) {
 }
 
 bool PetriNet::simulate() {
-    for (int i = 0; i < v; i++) {
+    for (int i = 1; i <= v; i++) {
         active_tokens.insert({{i, i}, {0, v}});
     }
 
