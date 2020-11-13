@@ -12,8 +12,11 @@ add_library(rcg src/rcg.cpp)
 add_library(tcg src/tcg.cpp)
 add_library(intersection src/intersection.cpp)
 
+add_library(scheduler src/scheduler.cpp)
+target_link_libraries(scheduler rcg tcg traffic intersection)
+
 add_executable(run_exp src/main.cpp)
-target_link_libraries(run_exp traffic intersection)
+target_link_libraries(run_exp scheduler traffic intersection)
 
 add_executable(rcg_test tests/rcg_test.cpp)
 target_link_libraries(rcg_test rcg)
