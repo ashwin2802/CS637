@@ -7,29 +7,27 @@ int main() {
     TCG G(T, I);
     G.edges.clear();
 
-    std::vector<std::pair<std::pair<int, int>, Edge>> v1, v2, v3, v4;
-    Edge e1, e2, e3, e4;
+    std::vector<std::pair<std::pair<int, int>, Edge>> v;
+    Edge e;
 
-    e1.type = EdgeType::TYPE_1;
-    v1.push_back({{1, 2}, e1});
-    e2.type = EdgeType::TYPE_3;
-    v1.push_back({{2, 1}, e2});
-    G.edges.insert({{1, 1}, v1});
-    // v.clear();
+    e.type = EdgeType::TYPE_1;
+    v.push_back({{1, 2}, e});
+    e.type = EdgeType::TYPE_3;
+    v.push_back({{2, 1}, e});
+    G.edges.insert({{1, 1}, v});
+    v.clear();
 
-    e3.type = EdgeType::TYPE_1;
-    v2.push_back({{2, 2}, e3});
-    G.edges.insert({{2, 1}, v2});
-    // v.clear();
+    e.type = EdgeType::TYPE_1;
+    v.push_back({{2, 2}, e});
+    G.edges.insert({{2, 1}, v});
+    v.clear();
 
-    e4.type = EdgeType::TYPE_3;
-    v3.push_back({{1, 2}, e4});
-    G.edges.insert({{2, 2}, v3});
-    
-    // v.clear();
+    e.type = EdgeType::TYPE_3;
+    v.push_back({{1, 2}, e});
+    G.edges.insert({{2, 2}, v});
+    v.clear();
 
     G.vertices.clear();
-
     Vertex k;
     k.first_i = true;
 
@@ -46,24 +44,8 @@ int main() {
     G.vertices.insert({{2, 2}, k});
 
     PetriNet P(G);
-
-    // for (auto trans : P.transitions) {
-    //     std::cout << "LEFT:" << std::endl;
-
-    //     for (auto left : trans.first) {
-    //         std::cout << left.first.first << ", " << left.first.second << ", " << left.second.first << std::endl;
-    //     }
-
-    //     std::cout << "RIGHT:" << std::endl;
-
-    //     for (auto right : trans.second) {
-    //         std::cout << right.first.first << ", " << right.first.second << ", " << right.second.first << std::endl;
-    //     }
-
-    //     std::cout << std::endl;
-    // }
-
     P.print();
+    P.simulate();
 
     return 0;
 }
