@@ -56,5 +56,9 @@ Intersection::Intersection(int num)
         case 4:
             calculate_paths_four();
             break;
+
+        case 16:
+            calculate_paths_sixteen();
+            break;
     }
 }
