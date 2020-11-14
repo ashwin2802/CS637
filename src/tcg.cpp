@@ -17,6 +17,7 @@ void TCG::vertices_and_type_1(Traffic& T, Intersection& I) {
             if (first_cz != czit) {
                 Edge e(EdgeType::TYPE_1);
                 e.wait_time = 0.1;
+                e.state = EdgeState::ON;
 
                 std::pair<std::pair<int, int>, Edge> dest_v(std::pair<int, int>(i, czit), e);
                 std::vector<std::pair<std::pair<int, int>, Edge>> dest = {dest_v};
@@ -55,6 +56,7 @@ void TCG::model_conflicts(Traffic& T, int conflict_zones) {
                     if (vehicle_one->first.first == vehicle_two->first.first) {
                         Edge e(EdgeType::TYPE_2);
                         e.wait_time = 0.2;
+                        e.state = EdgeState::ON;
 
                         std::pair<std::pair<int, int>, Edge> dest_v(std::pair<int, int>(j, k), e);
 
@@ -69,6 +71,7 @@ void TCG::model_conflicts(Traffic& T, int conflict_zones) {
                     } else {
                         Edge e(EdgeType::TYPE_3);
                         e.wait_time = 0.2;
+                        e.state = EdgeState::UNDECIDED;
 
                         std::pair<std::pair<int, int>, Edge> dest_v_one(std::pair<int, int>(j, k), e);
                         std::pair<std::pair<int, int>, Edge> dest_v_two(std::pair<int, int>(i, k), e);
