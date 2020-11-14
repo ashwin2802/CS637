@@ -1,7 +1,7 @@
 #include <petri_net.hpp>
 
 void PetriNet::type_one_transitions(TCG& graph) {
-    this->v = graph.v;
+    this->v = graph.m;
 
     for (auto vertex : graph.vertices) {
         if (vertex.second.first_j) {

@@ -3,7 +3,8 @@
 void TCG::vertices_and_type_1(Traffic& T, Intersection& I) {
     bool first_vehicle[] = {true, true, true, true};
     int i = 1;
-    this->v = T.m;
+    this->m = T.m;
+    this->n = I.n;
     this->e = 0;
 
     for (auto it : T.traffic) {
@@ -37,11 +38,12 @@ void TCG::vertices_and_type_1(Traffic& T, Intersection& I) {
         first_vehicle[it.first.first - 1] = false;
         i++;
     }
+    this->v = vertices.size();
 }
 
 void TCG::model_conflicts(Traffic& T, int conflict_zones) {
-    for (int i = 1; i <= T.m; i++) {
-        for (int j = i + 1; j <= T.m; j++) {
+    for (int i = 1; i <= m; i++) {
+        for (int j = i + 1; j <= m; j++) {
             for (int k = 1; k <= conflict_zones; k++) {
                 if (vertices.count(std::pair<int, int>(i, k)) && vertices.count(std::pair<int, int>(j, k))) {
                     auto vehicle_one = T.traffic.begin();
