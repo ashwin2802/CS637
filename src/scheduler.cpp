@@ -147,7 +147,7 @@ void Scheduler::remove_edges(const int& i_start, const int& i_end) {
     find_leaders(leaders);
     while (!leaders.empty()) {
         std::vector<std::pair<std::pair<int, int>, std::pair<int, int>>> candidates;
-        find_candidates(candidates);
+        find_candidates(candidates, leaders);
 
         std::pair<std::pair<int, int>, std::pair<int, int>> e_max;
         double max_cost = __DBL_MIN__;
@@ -206,4 +206,101 @@ void Scheduler::remove_edges(const int& i_start, const int& i_end) {
 bool Scheduler::check_deadlock() {
     RCG R(G);
     return R.check_cycle();
+}
+
+void Scheduler::find_leaders(std::vector<std::pair<int, int>>& leaders) {
+    for (auto it = G.vertices.begin(); it != G.vertices.end(); it++) {
+        if (it->second.first_j && it->second.first_i) {
+            leaders.push_back(it->first);
+        }
+    }
+}
+
+void Scheduler::update_leaders(std::vector<std::pair<int, int>>& leaders) {
+    for (auto it = G.edges.begin(); it != G.edges.end(); it++) {
+        bool black_from = true;
+        for (auto& e : it->second) {
+            if (e.second.state != EdgeState::ON && e.second.state != EdgeState::OFF) {
+                black_from = false;
+                break;
+            }
+        }
+
+        bool black_to = true;
+        for (auto it2 = G.edges.begin(); it2 != G.edges.end(); it2++) {
+            if (it == it2)
+                continue;
+            for (auto& e : it2->second) {
+                if (e.first == it->first) {
+                    if (e.second.state != EdgeState::ON && e.second.state != EdgeState::OFF) {
+                        black_to = false;
+                        break;
+                    }
+                }
+            }
+            if (!black_to)
+                break;
+        }
+
+        if (black_from || black_to) {
+            G.vertices[it->first].state = VertexState::BLACK;
+        }
+    }
+
+    for (auto it = G.edges.begin(); it != G.edges.end(); it++) {
+        bool gray = true;
+        for (auto it2 = G.edges.begin(); it2 != G.edges.end(); it2++) {
+            if (it == it2)
+                continue;
+            for (auto& e : it2->second) {
+                if (e.first == it->first) {
+                    if (G.vertices[it2->first].state != VertexState::BLACK) {
+                        gray = false;
+                        break;
+                    }
+                }
+            }
+            if (!gray) {
+                break;
+            }
+        }
+
+        if (gray) {
+            G.vertices[it->first].state == VertexState::GRAY;
+            leaders.push_back(it->first);
+        }
+    }
+}
+
+void Scheduler::find_candidates(std::vector<std::pair<std::pair<int, int>, std::pair<int, int>>>& edges, std::vector<std::pair<int, int>>& leaders) {
+    for (auto& v : leaders) {
+        for (auto& e : G.edges[v]) {
+            if (e.second.type == EdgeType::TYPE_3 && e.second.state == EdgeState::UNDECIDED) {
+                edges.push_back(std::make_pair(v, e.first));
+            }
+        }
+        for (auto it = G.edges.begin(); it != G.edges.end(); it++) {
+            for (auto& e : it->second) {
+                if (e.first == v && e.second.type == EdgeType::TYPE_3 && e.second.state == EdgeState::UNDECIDED) {
+                    edges.push_back(std::make_pair(it->first, e.first));
+                }
+            }
+        }
+    }
+}
+
+void Scheduler::print_schedule() {
+    std::cout << "Number of vertices: " << G.v << "\n";
+    std::cout << "Number of edges: " << G.e << "\n";
+
+    for (auto it = G.edges.begin(); it != G.edges.end(); it++) {
+        for (auto e : it->second) {
+            if (e.second.state == EdgeState::ON) {
+                print(it->first);
+                std::cout << " -> ";
+                print(e.first);
+            }
+        }
+        std::cout << "\n";
+    }
 }

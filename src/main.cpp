@@ -25,8 +25,13 @@ int main(int argc, char** argv) {
     // implement runtime logic here
     // need functions to benchmark times, save schedules --> utils.hpp
     // int param_1, param_2;
-    
-    // Traffic t(0.1, 30);
+
+    struct Config c = {.lambda = 0.1, .d = 30, .n = 4};
+
+    Scheduler sched(c);
+    sched.init();
+    sched.run();
+    sched.print_schedule();
 
     // for (auto it_ : t.traffic) {
     //     print_enum(it_.first);
