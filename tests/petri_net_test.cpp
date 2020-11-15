@@ -1,178 +1,104 @@
 #include <petri_net.hpp>
 
-int main() {
-    Traffic T(0.1, 15);
-    Intersection I(1);
-
-    TCG G(T, I);
-    G.edges.clear();
+TCG examplea() {
+    TCG G;
 
     std::vector<std::pair<std::pair<int, int>, Edge>> v;
     Edge e;
 
-    // e.type = EdgeType::TYPE_1;
-    // v.push_back({{1, 2}, e});
-    // e.type = EdgeType::TYPE_3;
-    // v.push_back({{2, 1}, e});
-    // G.edges.insert({{1, 1}, v});
-    // v.clear();
+    e.type = EdgeType::TYPE_1;
+    v.push_back({{1, 2}, e});
+    e.type = EdgeType::TYPE_3;
+    v.push_back({{2, 1}, e});
+    G.edges.insert({{1, 1}, v});
+    v.clear();
 
-    // e.type = EdgeType::TYPE_1;
-    // v.push_back({{2, 2}, e});
-    // G.edges.insert({{2, 1}, v});
-    // v.clear();
+    e.type = EdgeType::TYPE_1;
+    v.push_back({{2, 2}, e});
+    G.edges.insert({{2, 1}, v});
+    v.clear();
 
-    // e.type = EdgeType::TYPE_3;
-    // v.push_back({{1, 2}, e});
-    // G.edges.insert({{2, 2}, v});
-    // v.clear();
+    e.type = EdgeType::TYPE_3;
+    v.push_back({{1, 2}, e});
+    G.edges.insert({{2, 2}, v});
+    v.clear();
 
-    // G.vertices.clear();
-    // Vertex k;
-    // k.first_i = true;
+    G.vertices.clear();
+    Vertex k;
+    k.first_i = true;
 
-    // k.first_j = true;
-    // G.vertices.insert({{1, 1}, k});
+    k.first_j = true;
+    G.vertices.insert({{1, 1}, k});
 
-    // k.first_j = false;
-    // G.vertices.insert({{1, 2}, k});
+    k.first_j = false;
+    G.vertices.insert({{1, 2}, k});
 
-    // k.first_j = true;
-    // G.vertices.insert({{2, 1}, k});
+    k.first_j = true;
+    G.vertices.insert({{2, 1}, k});
 
-    // k.first_j = false;
-    // G.vertices.insert({{2, 2}, k});
+    k.first_j = false;
+    G.vertices.insert({{2, 2}, k});
 
-    // e.type = EdgeType::TYPE_1;
-    // v.push_back({{1, 2}, e});
-    // e.type = EdgeType::TYPE_3;
-    // v.push_back({{2, 1}, e});
-    // G.edges.insert({{1, 1}, v});
-    // v.clear();
+    G.m = 2;
 
-    // e.type = EdgeType::TYPE_1;
-    // v.push_back({{2, 2}, e});
-    // G.edges.insert({{2, 1}, v});
-    // v.clear();
+    return G;
+}
 
-    // e.type = EdgeType::TYPE_3;
-    // v.push_back({{2, 2}, e});
-    // G.edges.insert({{1, 2}, v});
-    // v.clear();
+TCG exampleb() {
+    TCG G;
 
-    // G.vertices.clear();
-    // Vertex k;
-    // k.first_i = true;
+    std::vector<std::pair<std::pair<int, int>, Edge>> v;
+    Edge e;
 
-    // k.first_j = true;
-    // G.vertices.insert({{1, 1}, k});
+    e.type = EdgeType::TYPE_1;
+    v.push_back({{1, 3}, e});
+    e.type = EdgeType::TYPE_3;
+    v.push_back({{2, 1}, e});
+    G.edges.insert({{1, 1}, v});
+    v.clear();
 
-    // k.first_j = false;
-    // G.vertices.insert({{1, 2}, k});
+    e.type = EdgeType::TYPE_1;
+    v.push_back({{2, 2}, e});
+    G.edges.insert({{2, 1}, v});
+    v.clear();
 
-    // k.first_j = true;
-    // G.vertices.insert({{2, 1}, k});
+    e.type = EdgeType::TYPE_1;
+    v.push_back({{2, 3}, e});
+    G.edges.insert({{2, 2}, v});
+    v.clear();
 
-    // k.first_j = false;
-    // G.vertices.insert({{2, 2}, k});
+    e.type = EdgeType::TYPE_3;
+    v.push_back({{1, 3}, e});
+    G.edges.insert({{2, 3}, v});
+    v.clear();
 
-    // G.v = 2;
+    G.vertices.clear();
+    Vertex k;
+    k.first_i = true;
 
-    // e.type = EdgeType::TYPE_1;
-    // v.push_back({{1, 3}, e});
-    // e.type = EdgeType::TYPE_3;
-    // v.push_back({{2, 1}, e});
-    // G.edges.insert({{1, 1}, v});
-    // v.clear();
+    k.first_j = true;
+    G.vertices.insert({{1, 1}, k});
 
-    // e.type = EdgeType::TYPE_1;
-    // v.push_back({{2, 2}, e});
-    // G.edges.insert({{2, 1}, v});
-    // v.clear();
+    k.first_j = false;
+    G.vertices.insert({{1, 2}, k});
 
-    // e.type = EdgeType::TYPE_1;
-    // v.push_back({{2, 3}, e});
-    // G.edges.insert({{2, 2}, v});
-    // v.clear();
+    k.first_j = true;
+    G.vertices.insert({{2, 1}, k});
 
-    // e.type = EdgeType::TYPE_3;
-    // v.push_back({{1, 3}, e});
-    // G.edges.insert({{2, 3}, v});
-    // v.clear();
+    k.first_j = false;
+    G.vertices.insert({{2, 2}, k});
+    G.vertices.insert({{2, 3}, k});
 
-    // G.vertices.clear();
-    // Vertex k;
-    // k.first_i = true;
+    G.m = 2;
 
-    // k.first_j = true;
-    // G.vertices.insert({{1, 1}, k});
+    return G;
+}
 
-    // k.first_j = false;
-    // G.vertices.insert({{1, 2}, k});
+TCG examplec() {
+    TCG G;
 
-    // k.first_j = true;
-    // G.vertices.insert({{2, 1}, k});
-
-    // k.first_j = false;
-    // G.vertices.insert({{2, 2}, k});
-
-    // G.v = 2;
-
-    // e.type = EdgeType::TYPE_1;
-    // v.push_back({{1, 3}, e});
-    // e.type = EdgeType::TYPE_3;
-    // v.push_back({{2, 1}, e});
-    // G.edges.insert({{1, 1}, v});
-    // v.clear();
-
-    // e.type = EdgeType::TYPE_1;
-    // v.push_back({{2, 2}, e});
-    // G.edges.insert({{2, 1}, v});
-    // v.clear();
-
-    // e.type = EdgeType::TYPE_1;
-    // v.push_back({{3, 3}, e});
-    // G.edges.insert({{3, 2}, v});
-    // v.clear();
-
-    // e.type = EdgeType::TYPE_3;
-    // v.push_back({{3, 2}, e});
-    // G.edges.insert({{2, 2}, v});
-    // v.clear();
-
-    // e.type = EdgeType::TYPE_3;
-    // v.push_back({{1, 3}, e});
-    // G.edges.insert({{3, 3}, v});
-    // v.clear();
-
-    // e.type = EdgeType::TYPE_3;
-    // v.push_back({{1, 3}, e});
-    // G.edges.insert({{2, 3}, v});
-    // v.clear();
-
-    // G.vertices.clear();
-    // Vertex k;
-    // k.first_i = true;
-
-    // k.first_j = true;
-    // G.vertices.insert({{1, 1}, k});
-
-    // k.first_j = false;
-    // G.vertices.insert({{1, 3}, k});
-
-    // k.first_j = true;
-    // G.vertices.insert({{2, 1}, k});
-
-    // k.first_j = false;
-    // G.vertices.insert({{2, 2}, k});
-
-    // k.first_j = true;
-    // G.vertices.insert({{3, 2}, k});
-
-    // k.first_j = false;
-    // G.vertices.insert({{3, 3}, k});
-
-    // G.v = 3; 
+    std::vector<std::pair<std::pair<int, int>, Edge>> v;
+    Edge e;
 
     e.type = EdgeType::TYPE_1;
     v.push_back({{1, 3}, e});
@@ -223,8 +149,107 @@ int main() {
     k.first_j = false;
     G.vertices.insert({{3, 3}, k});
 
-    G.v = 3; 
+    G.m = 3;
 
+    return G;
+}
+
+TCG exampled() {
+    TCG G;
+
+    std::vector<std::pair<std::pair<int, int>, Edge>> v;
+    Edge e;
+
+    e.type = EdgeType::TYPE_1;
+    v.push_back({{1, 2}, e});
+    e.type = EdgeType::TYPE_3;
+    v.push_back({{2, 1}, e});
+    G.edges.insert({{1, 1}, v});
+    v.clear();
+
+    e.type = EdgeType::TYPE_1;
+    v.push_back({{2, 2}, e});
+    G.edges.insert({{2, 1}, v});
+    v.clear();
+
+    e.type = EdgeType::TYPE_3;
+    v.push_back({{2, 2}, e});
+    G.edges.insert({{1, 2}, v});
+    v.clear();
+
+    G.vertices.clear();
+    Vertex k;
+    k.first_i = true;
+
+    k.first_j = true;
+    G.vertices.insert({{1, 1}, k});
+
+    k.first_j = false;
+    G.vertices.insert({{1, 2}, k});
+
+    k.first_j = true;
+    G.vertices.insert({{2, 1}, k});
+
+    k.first_j = false;
+    G.vertices.insert({{2, 2}, k});
+
+    G.m = 2;
+
+    return G;
+}
+
+TCG examplee() {
+    TCG G;
+
+    std::vector<std::pair<std::pair<int, int>, Edge>> v;
+    Edge e;
+
+    e.type = EdgeType::TYPE_1;
+    v.push_back({{1, 3}, e});
+    e.type = EdgeType::TYPE_3;
+    v.push_back({{2, 1}, e});
+    G.edges.insert({{1, 1}, v});
+    v.clear();
+
+    e.type = EdgeType::TYPE_1;
+    v.push_back({{2, 2}, e});
+    G.edges.insert({{2, 1}, v});
+    v.clear();
+
+    e.type = EdgeType::TYPE_1;
+    v.push_back({{2, 3}, e});
+    G.edges.insert({{2, 2}, v});
+    v.clear();
+
+    e.type = EdgeType::TYPE_3;
+    v.push_back({{2, 3}, e});
+    G.edges.insert({{1, 3}, v});
+    v.clear();
+
+    G.vertices.clear();
+    Vertex k;
+    k.first_i = true;
+
+    k.first_j = true;
+    G.vertices.insert({{1, 1}, k});
+
+    k.first_j = false;
+    G.vertices.insert({{1, 2}, k});
+
+    k.first_j = true;
+    G.vertices.insert({{2, 1}, k});
+
+    k.first_j = false;
+    G.vertices.insert({{2, 2}, k});
+    G.vertices.insert({{2, 3}, k});
+
+    G.m = 2;
+
+    return G;
+}
+
+int main() {
+    TCG G = examplea();
     PetriNet P(G);
     P.print();
     P.simulate();

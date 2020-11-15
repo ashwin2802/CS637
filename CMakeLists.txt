@@ -19,8 +19,8 @@ target_link_libraries(run_exp traffic intersection)
 add_executable(rcg_test tests/rcg_test.cpp)
 target_link_libraries(rcg_test rcg)
 
-# add_executable(traffic_test tests/traffic_test.cpp)
-# target_link_libraries(traffic_test traffic)
+add_executable(traffic_test tests/traffic_test.cpp)
+target_link_libraries(traffic_test traffic)
 
 add_executable(intersection_test tests/intersection_test.cpp)
 target_link_libraries(intersection_test intersection)

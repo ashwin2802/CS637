@@ -21,20 +21,14 @@ void print_enum(int t) {
 }
 
 int main(int argc, char** argv) {
-    Traffic t(0.1, 30);
+    Traffic t(0.1, 60);
 
     for (auto it_ : t.traffic) {
-        print_enum(it_.first);
+        print_enum(it_.first.first);
+        std::cout << " " << it_.first.second << " ";
+        print_enum(it_.second);
         std::cout << std::endl;
-        for (auto sit_ : it_.second) {
-            std::cout << sit_.first << " ";
-            print_enum(sit_.second);
-            std::cout << std::endl;
-        }
-        std::cout << std::endl << std::endl;
     }
 
-    for (auto it_:t.vehicles) {
-        std::cout << it_.first << " " << it_.second << std::endl;
-    }
+    return 0;
 }
