@@ -1,5 +1,5 @@
 #include <petri_net.hpp>
-
+#include <rcg.hpp> 
 TCG examplea() {
     TCG G;
 
@@ -249,10 +249,16 @@ TCG examplee() {
 }
 
 int main() {
-    TCG G = examplea();
+    TCG G = exampleb();
     PetriNet P(G);
     P.print();
     P.simulate();
+
+    std::cout << std::endl << "Deadlock check by RCG: ";
+
+    RCG R(G);
+    std::cout << R.check_cycle() << std::endl;
+    R.print_graph();
 
     return 0;
 }
