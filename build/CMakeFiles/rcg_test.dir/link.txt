@@ -1,0 +1,1 @@
+/usr/local/bin/c++  -O3 -DNDEBUG  -rdynamic CMakeFiles/rcg_test.dir/tests/rcg_test.cpp.o  -o ../bin/rcg_test librcg.a 

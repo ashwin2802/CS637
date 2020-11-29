@@ -1,0 +1,1 @@
+/usr/local/bin/c++  -O3 -DNDEBUG  -rdynamic CMakeFiles/intersection_test.dir/tests/intersection_test.cpp.o  -o ../bin/intersection_test libintersection.a 

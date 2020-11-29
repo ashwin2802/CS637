@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/common.hpp
+iostream
+-
+map
+-
+random
+-
+utility
+-
+vector
+-
+algorithm
+-
+
+../include/intersection.hpp
+common.hpp
+-
+
+../include/tcg.hpp
+intersection.hpp
+-
+traffic.hpp
+-
+
+../include/traffic.hpp
+common.hpp
+-
+
+/home/ashwin/acads_ws/CS637/CS637/tests/graph_generation_test.cpp
+intersection.hpp
+-
+iomanip
+-
+tcg.hpp
+-
+traffic.hpp
+-
+

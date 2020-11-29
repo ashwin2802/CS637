@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/common.hpp
+iostream
+-
+map
+-
+random
+-
+utility
+-
+vector
+-
+algorithm
+-
+
+../include/intersection.hpp
+common.hpp
+-
+
+/home/ashwin/acads_ws/CS637/CS637/src/intersection.cpp
+intersection.hpp
+-
+

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libtcg.a  CMakeFiles/tcg.dir/src/tcg.cpp.o
+/usr/bin/ranlib libtcg.a

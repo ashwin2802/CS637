@@ -1,0 +1,2 @@
+/usr/bin/ar qc libtraffic.a  CMakeFiles/traffic.dir/src/traffic.cpp.o
+/usr/bin/ranlib libtraffic.a

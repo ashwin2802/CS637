@@ -1,0 +1,1 @@
+/usr/local/bin/c++  -O3 -DNDEBUG  -rdynamic CMakeFiles/check.dir/src/test.cpp.o  -o ../bin/check 

@@ -1,0 +1,1 @@
+/usr/local/bin/c++  -O3 -DNDEBUG  -rdynamic CMakeFiles/graph_generation_test.dir/tests/graph_generation_test.cpp.o  -o ../bin/graph_generation_test libintersection.a libtraffic.a libtcg.a 

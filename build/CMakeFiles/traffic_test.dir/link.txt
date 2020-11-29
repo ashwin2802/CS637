@@ -1,0 +1,1 @@
+/usr/local/bin/c++  -O3 -DNDEBUG  -rdynamic CMakeFiles/traffic_test.dir/tests/traffic_test.cpp.o  -o ../bin/traffic_test libtraffic.a 

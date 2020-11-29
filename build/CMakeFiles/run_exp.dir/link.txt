@@ -1,0 +1,1 @@
+/usr/local/bin/c++  -O3 -DNDEBUG  -rdynamic CMakeFiles/run_exp.dir/src/main.cpp.o  -o ../bin/run_exp libscheduler.a libtraffic.a libintersection.a librcg.a libtcg.a 

@@ -1,0 +1,2 @@
+/usr/bin/ar qc librcg.a  CMakeFiles/rcg.dir/src/rcg.cpp.o
+/usr/bin/ranlib librcg.a
