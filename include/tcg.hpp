@@ -33,8 +33,8 @@ class TCG {
     TCG(){};  // for testing
     TCG(Traffic T, Intersection I);
 
-    int v, e;
-    int m, n;  // store from T and I
+    int v, e; // Number of vertices and edges
+    int m, n;  // store from T and I, number of vehicles and conflict zones
     std::map<std::pair<int, int>, std::vector<std::pair<std::pair<int, int>, Edge>>> edges;
     std::map<std::pair<int, int>, Vertex> vertices;
 };

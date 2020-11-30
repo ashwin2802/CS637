@@ -1,5 +1,10 @@
 #include <intersection.hpp>
 
+/*
+This file just records all the conflict zones a vehicle has to pass through, to go from 
+a particular source lane 
+*/
+
 void Intersection::calculate_paths_one() {
     std::vector<int> single = {1};
     for (int i = 1; i <= 4; i++) {
