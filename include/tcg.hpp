@@ -28,10 +28,14 @@ class TCG {
   private:
     void vertices_and_type_1(Traffic& T, Intersection& I);
     void model_conflicts(Traffic& T, int conflict_zones);
+    inline void print(const std::pair<int, int>& p) {
+        std::cout << "(" << p.first << " " << p.second << ")";
+    }
 
   public:
     TCG(){};  // for testing
     TCG(Traffic T, Intersection I);
+    void print_graph();
 
     int v, e;
     int m, n;  // store from T and I

@@ -33,3 +33,12 @@ target_link_libraries(graph_generation_test intersection traffic tcg)
 
 add_executable(deadlock_test tests/deadlock_test.cpp)
 target_link_libraries(deadlock_test intersection traffic tcg petrinet rcg)
+
+add_executable(top_test tests/top_test.cpp)
+target_link_libraries(top_test scheduler)
+
+add_executable(scheduler_test tests/scheduler_test.cpp)
+target_link_libraries(scheduler_test scheduler)
+
+add_executable(tcg_test tests/tcg_test.cpp)
+target_link_libraries(tcg_test tcg traffic intersection)

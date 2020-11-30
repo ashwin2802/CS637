@@ -25,15 +25,34 @@ void Scheduler::init() {
     }
 }
 
+void Scheduler::init(const TCG& G_in) {
+    G = TCG(G_in);
+    for (auto it = G.vertices.begin(); it != G.vertices.end(); it++) {
+        it->second.state = VertexState::WHITE;
+        it->second.slack = __DBL_MAX__;
+    }
+
+    for (auto it = G.edges.begin(); it != G.edges.end(); it++) {
+        for (auto& e : it->second) {
+            if (e.second.type != EdgeType::TYPE_3) {
+                e.second.state = EdgeState::ON;
+            } else {
+                e.second.state = EdgeState::UNDECIDED;
+            }
+        }
+    }
+}
+
 void Scheduler::run() {
     update_times();
-    remove_edges(0, T.m);
+    // remove_edges(0, T.m);
 }
 
 void Scheduler::update_times() {
     auto tv = top_sort();
+
     for (int i = 0; i < tv.size(); i++) {
-        double start_time = 0;  // set arrival time of ith vehicle here
+        double start_time = G.vertices[tv[i]].start_time;  // set arrival time of ith vehicle here
         for (auto it = G.edges.begin(); it != G.edges.end(); it++) {
             for (auto& e : it->second) {
                 if (e.second.state != EdgeState::ON) {
@@ -102,6 +121,7 @@ void Scheduler::dfs_visit(const std::pair<int, int>& v,
     }
     visited.insert(v);
     run_set.insert(v);
+    top.push_back(v);
     if (G.edges.find(v) != G.edges.end()) {
         for (auto& e : G.edges[v]) {
             if (e.second.state != EdgeState::ON) {
@@ -114,7 +134,6 @@ void Scheduler::dfs_visit(const std::pair<int, int>& v,
             }
         }
     }
-    top.push_back(v);
 }
 
 void Scheduler::remove_edges(const int& i_start, const int& i_end) {
@@ -204,6 +223,7 @@ void Scheduler::remove_edges(const int& i_start, const int& i_end) {
 }
 
 bool Scheduler::check_deadlock() {
+    // G.print_graph();
     RCG R(G);
     return R.check_cycle();
 }
@@ -294,9 +314,9 @@ void Scheduler::print_schedule() {
     std::cout << "Number of edges: " << G.e << "\n";
 
     for (auto it = G.edges.begin(); it != G.edges.end(); it++) {
+        print(it->first);
         for (auto e : it->second) {
             if (e.second.state == EdgeState::ON) {
-                print(it->first);
                 std::cout << " -> ";
                 print(e.first);
             }

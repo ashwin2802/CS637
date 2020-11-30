@@ -18,7 +18,6 @@ class Scheduler {
     bool check_deadlock();
     void remove_edges(const int& i_start, const int& i_end);
     void update_times();
-    std::vector<std::pair<int, int>> top_sort();
     void dfs_visit(const std::pair<int, int>& v,
         std::set<std::pair<int, int>>& run_set,
         std::set<std::pair<int, int>>& visited,
@@ -29,8 +28,10 @@ class Scheduler {
     }
 
   public:
+    std::vector<std::pair<int, int>> top_sort();
     Scheduler(const struct Config& cfg);
     void init();
+    void init(const TCG& G_in);
     void run();
     void print_schedule();
 

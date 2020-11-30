@@ -102,4 +102,31 @@ void TCG::model_conflicts(Traffic& T, int conflict_zones) {
 TCG::TCG(Traffic T, Intersection I) {
     vertices_and_type_1(T, I);
     model_conflicts(T, I.n);
+    v = vertices.size();
+    e = 0;
+    for (auto it = edges.begin(); it != edges.end(); it++) {
+        e += it->second.size();
+    }
+}
+
+void TCG::print_graph() {
+    std::cout << "Number of vertices: " << v << "\n";
+    std::cout << "Number of edges: " << e << "\n";
+
+    for (auto v : vertices) {
+        print(v.first);
+        std::cout << ": First i? " << v.second.first_i << " First j? " << v.second.first_j << " Start time -: " << v.second.start_time << "\n";
+    }
+
+    std::cout << std::endl;
+
+    for (auto it = edges.begin(); it != edges.end(); it++) {
+        print(it->first);
+        for (auto e : it->second) {
+            std::cout << " -> ";
+            print(e.first);
+            std::cout << ": " << int(e.second.type) + 1;
+        }
+        std::cout << "\n";
+    }
 }

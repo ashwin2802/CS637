@@ -26,10 +26,12 @@ int main(int argc, char** argv) {
     // need functions to benchmark times, save schedules --> utils.hpp
     // int param_1, param_2;
 
-    struct Config c = {.lambda = 0.1, .d = 30, .n = 4};
+    struct Config c = {.lambda = 0.2, .d = 6, .n = 4};
 
     Scheduler sched(c);
     sched.init();
+    sched.G.print_graph();
+    sched.print_schedule();
     sched.run();
     sched.print_schedule();
 

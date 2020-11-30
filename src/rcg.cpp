@@ -142,11 +142,11 @@ RCG::RCG(const TCG& G) {
         }
     }
 
-    for (auto it = edges.begin(); it != edges.end(); it++) {
-        if (it->second.size() == 0) {
-            edges.erase(it);  // remove vertices with no outgoing edges from adj list
-        }
-    }
+    // for (auto it = edges.begin(); it != edges.end(); it++) {
+    //     if (it->second.size() == 0) {
+    //         edges.erase(it);  // remove vertices with no outgoing edges from adj list
+    //     }
+    // }
 }
 
 bool RCG::check_cycle() {
