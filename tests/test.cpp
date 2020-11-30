@@ -356,7 +356,7 @@ int main(int argc, char* argv[]) {
     type_two_three_buffer.push_back(type_one_buffer);
     
 
-    while (!P.transitions.empty()){
+    while (!P.transitions.empty()){        
         if (client.simulation.getCurrentTime() == start_times.front()*10000) {
             // std::cout << std::to_string(G.m - start_times.size() + 1) <<std::endl;
             client.vehicle.setSpeed("vehicle_" + std::to_string(G.m - start_times.size() + 1), 0);
@@ -364,7 +364,10 @@ int main(int argc, char* argv[]) {
             start_times.pop_front();
         }
 
+        std::cout << "-----------------------------" << std::endl;
+
         for (auto token : type_one_buffer) {
+            P.print_token(token);
             P.active_tokens.insert(token);
         }
         type_one_buffer.clear();
@@ -375,16 +378,11 @@ int main(int argc, char* argv[]) {
 
         type_two_three_buffer.pop_front();
         std::vector<token> type_two_three_insert;
-        
-        for (auto check_t=ongoing_transitions.begin(); check_t != ongoing_transitions.end();) {
-            if (check_t->second*10000 == client.simulation.getCurrentTime()) {
-                auto it = P.transitions.begin();
-                for (;(*it) != check_t->first; it++);
-                for (auto token_it : it->first) {
-                    P.active_tokens.erase(token_it);
-                }
 
-                for (auto token_it : it->second) {
+        for (auto check_t=ongoing_transitions.begin(); check_t != ongoing_transitions.end();) {
+            if (check_t->second == client.simulation.getCurrentTime()) {
+
+                for (auto token_it : check_t->first.second) {
                     if (token_it.first.first == token_it.first.second) {
                         type_one_buffer.push_back(token_it);
                     } else {
@@ -392,9 +390,7 @@ int main(int argc, char* argv[]) {
                     }
                 }  
 
-                P.transitions.erase(it);
                 auto copy = check_t;
-                
                 int vehicle_number;
 
                 for (auto vehicle : check_t->first.first) {
@@ -404,11 +400,9 @@ int main(int argc, char* argv[]) {
                     }
                 }
 
+
                 vehicle_info[vehicle_number-1].second = false;
-
-                std::cout << vehicle_number << std::endl;
                 client.vehicle.setSpeed("vehicle_" + std::to_string(vehicle_number), 0);
-
                 check_t++;
                 ongoing_transitions.erase(copy);
 
@@ -431,8 +425,14 @@ int main(int argc, char* argv[]) {
 
             if (all_tokens_present) {
                 ongoing_transitions.push_back({*it, client.simulation.getCurrentTime()+10000});
+
+                for (auto token_it : it->first) {
+                    P.active_tokens.erase(token_it);
+                }
+
                 auto copy = it;
                 it++;
+
                 P.transitions.erase(copy);
 
                 int vehicle_number;
@@ -445,7 +445,6 @@ int main(int argc, char* argv[]) {
                 }
 
                 vehicle_info[vehicle_number-1].second = true;
-                std::cout << vehicle_number << std::endl;
                 client.vehicle.setSpeed("vehicle_" + std::to_string(vehicle_number), vehicle_info[vehicle_number-1].first);
 
             } else {
