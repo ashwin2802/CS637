@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on Monday 30 November 2020 02:14:54 PM IST by Eclipse SUMO GUI Version v1_7_0+1351-8ecdf9e25a
+-->
+
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="/home/kshitij/CS637/SUMO/Intersection/intersection_refined.net.xml"/>
+        <route-files value="/home/kshitij/CS637/SUMO/Intersection/intersection_refined_copy.rou.xml"/>
+    </input>
+
+</configuration>

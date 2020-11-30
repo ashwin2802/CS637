@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on Monday 30 November 2020 02:14:11 PM IST by Eclipse SUMO netedit Version 1.7.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
+
+    <output>
+        <output-file value="/home/kshitij/CS637/SUMO/Intersection/intersection_refined.net.xml"/>
+    </output>
+
+    <processing>
+        <offset.disable-normalization value="true"/>
+    </processing>
+
+    <junctions>
+        <no-turnarounds value="true"/>
+    </junctions>
+
+    <netedit>
+        <route-files value="/home/kshitij/CS637/SUMO/Intersection/intersection_refined.rou.xml"/>
+    </netedit>
+
+    <report>
+        <aggregate-warnings value="5"/>
+    </report>
+
+</configuration>
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <vType id="default_type" width="0.5" length="2"></vType>
+    <route edges="gneE4 gneE11" color="white" id="11"/>
+    <route edges="gneE8 gneE5" color="white" id="22"/>
+    <route edges="gneE6 gneE10" color="white" id="33"/>
+    <route edges="gneE9 gneE7" color="white" id="44"/>
+    <route edges="gneE4 gneE0 gneE5" color="white" id="12"/>
+    <route edges="gneE4 gneE0 gneE1 gneE10" color="white" id="13"/>
+    <route edges="gneE8 gneE1 gneE10" color="white" id="23"/>
+    <route edges="gneE8 gneE1 gneE2 gneE7" color="white" id="24"/>
+    <route edges="gneE6 gneE2 gneE3 gneE11" color="white" id="31"/>
+    <route edges="gneE6 gneE2 gneE7" color="white" id="34"/>
+    <route edges="gneE9 gneE3 gneE11" color="white" id="41"/>
+    <route edges="gneE9 gneE3 gneE0 gneE5" color="white" id="42"/>
+<vehicle id="vehicle_1" depart="0.000000" route="23" type="default_type" />
+<vehicle id="vehicle_2" depart="10.000000" route="12" type="default_type" />
+</routes>
